@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-<meta charset="utf-8">
 
 <title>Clojure</title>
 
@@ -48,6 +46,9 @@ if( window.location.search.match( /print-pdf/gi ) ) {
   background: black;
   overflow: visible;
 }
+img {
+background: white !important;
+}
 .reveal pre {
   max-height: none;
   line-height: 2.4em;
@@ -87,7 +88,25 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
     <section data-markdown>
       <script type="text/template">
-       ## (craftsmanship)
+       ## (чего мы хотим?)
+       ``` clojure
+       (быстро писать)
+       (понятные и полезные системы)
+       (легко поддерживать и расширять)
+       (меньше проблем с масштабированием)
+       ```
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (что нужно?)
+       ``` clojure
+       (интерактивная разработка)
+       (простота)
+       (меньше кода (выразительность))
+       (повторное использование)
+       ```
       </script>
     </section>
 
@@ -108,10 +127,10 @@ if( window.location.search.match( /print-pdf/gi ) ) {
       <script type="text/template">
       ## (is (good? FP))
       ```clojure
-      (first-class fn) => simplicity
-      (high-order fn) => abstraction
-      (pure fn) => reasonable
-      (lazy fn)
+      (first-class fn) => простота
+      (high-order fn) => выразительность
+      (pure fn) => понятность
+      (immutability) => конкурентность
       ```
       </script>
     </section>
@@ -120,17 +139,34 @@ if( window.location.search.match( /print-pdf/gi ) ) {
       <script type="text/template">
       ## (is (good? LISP))
       ```clojure
-      (homoiconicity) => uniformity
-      (macro) => extendability
-      (REPL) => interactivity
+      (homoiconicity) => униформность
+      (macro) => расширяемость
+      (REPL) => интерактивность
       ```
       </script>
     </section>
 
+    <section data-markdown>
+      <script type="text/template">
+      ## (is (good? JVM))
+      ```clojure
+      (ecosystem) => повторное использование
+      (vm) => надежность и производительность
+      ```
+      </script>
+    </section>
 
     <section data-markdown>
       <script type="text/template">
        ## (lisp intro)
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (homoiconic)
+       ----
+       ## (CODE is DATA)
       </script>
     </section>
 
@@ -164,7 +200,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
     <section data-markdown>
       <script type="text/template">
-       ### (homoiconic)
+       ### (homoiconic code is data)
        ```
        [defn myfn [x y]
          [+
@@ -178,7 +214,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
     <section data-markdown>
       <script type="text/template">
-       ### (homoiconic)
+       ### (is (it (too-much?)))
        ```clojure
        (defn myfn (x y) ; 3
          (+ (* x x) (* y y))) ; 7
@@ -192,7 +228,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
     <section data-markdown>
       <script type="text/template">
-       ### ((((too much))))
+       ### {[;not(so-much());]}
        ```
        function myfn(x,y){ //4
          return x*x + y*y; //2
@@ -223,13 +259,39 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
     <section data-markdown>
       <script type="text/template">
+       ## EDN
+
+       ```clojure
+       {:name "User"
+        :roles #{:admin :dev}
+        :bith-date #inst "1980-0-05"}
+       ```
+      </script>
+    </section>
+
+
+    <section data-markdown>
+      <script type="text/template">
+       ## Reader sugar
+
+       ```clojure
+         datatypes => them self
+         'x => (quote x)
+         ;; # - dispatcher
+         #"regexp" => (regexp "regexp")
+         #(+ 2 %) => (fn [a_32] (+ 2 a_32))
+       ```
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
        ## Read & Eval
        ## No interpreter
        ---
 
        * read set of forms (like JSON)
        * evaluate forms and return result (expression)
-
       </script>
     </section>
 
@@ -254,15 +316,9 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
     <section data-markdown>
       <script type="text/template">
-       ## Reader sugar
-
-       ```clojure
-         datatypes => them self
-         'x => (quote x)
-         ;; # - dispatcher
-         #"regexp" => (regexp "regexp")
-         #(+ 2 %) => (fn [a_32] (+ 2 a_32))
-       ```
+       ## (syntax)
+       ----
+       ## (FORM ARG1 ARG2 (FORM ARG1) 
       </script>
     </section>
 
@@ -329,10 +385,12 @@ if( window.location.search.match( /print-pdf/gi ) ) {
       </script>
     </section>
 
+
     <section data-markdown>
       <script type="text/template">
        # (DSL)
        ---
+       ## (DRY)
        ## (extend :lang for your needs)
       </script>
     </section>
@@ -400,7 +458,10 @@ if( window.location.search.match( /print-pdf/gi ) ) {
        ## (paradigm :as (a library))
 
        ```clojure
-       (core.typed)
+       (require '[clojure.core.typed :refer [ann]])
+       (ann bar [Number -> Number])
+       (defn bar [b]
+	  (+ 2 (foo b)))
        ```
       </script>
     </section>
@@ -426,7 +487,6 @@ if( window.location.search.match( /print-pdf/gi ) ) {
          (search)
          (as-meta-data))
        ```
-
       </script>
     </section>
 
@@ -436,10 +496,26 @@ if( window.location.search.match( /print-pdf/gi ) ) {
        ## Functional Programming
 
        * First class functions
-       * Recursion
-       * Pure Functions
        * Hight Order Functions
+       * Pure Functions
        * Immutable datatypes
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (first class functions)
+
+       ```clojure
+       (fn add [x y z] 
+          (+ x y z))
+
+       #(+ %1 %2 %3)
+
+       (defn add [x y z] 
+          "doc string"
+          (+ x y z))
+       ```
       </script>
     </section>
 
@@ -453,8 +529,7 @@ if( window.location.search.match( /print-pdf/gi ) ) {
            (f2 (f1 x))))
 
        ((comp + *) 3)
-       ((comp + (fn [x] (/ x 2)))
-         3)
+       ((comp + #(/ % 2)) 3)
        ```
       </script>
     </section>
@@ -480,16 +555,6 @@ if( window.location.search.match( /print-pdf/gi ) ) {
        ---
        ### same input same output
        ### no time
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-       ## ((and essential acidental)
-       ##   complexity)
-       ---
-       ### Shared Mutable State
-       #### [Out of the tar pit](http://shaffner.us/cs/papers/tarpit.pdf)
       </script>
     </section>
 
@@ -563,8 +628,6 @@ if( window.location.search.match( /print-pdf/gi ) ) {
       </script>
     </section>
 
-
-
     <section data-markdown>
       <script type="text/template">
        # IMMUTABILITY
@@ -605,6 +668,29 @@ if( window.location.search.match( /print-pdf/gi ) ) {
       <img src="persistent-dt.png" style="background: white;"/>
     </section>
 
+    <section data-markdown>
+      <script type="text/template">
+       # OOP vs/and FP
+       ## [FP below, OOP abow](http://michaelfeathers.typepad.com/michael_feathers_blog/2012/03/tell-above-and-ask-below-hybridizing-oo-and-functional-design.htm)
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## FP better OOP in the small
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## ADT vs Objects
+       ```clojure
+       (def st (mk-stack))
+       (push st 1) => new-stack
+       (pop st) => 1
+       ```
+      </script>
+    </section>
 
     <section data-markdown>
       <script type="text/template">
@@ -643,6 +729,8 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
        * add new type with fixed behavior
        * add behavior to existing type
+
+       ![](ep.gif)
       </script>
     </section>
 
@@ -667,11 +755,37 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
     <section data-markdown>
       <script type="text/template">
-       # OOP vs/and FP
-       ## [FP below, OOP abow](http://michaelfeathers.typepad.com/michael_feathers_blog/2012/03/tell-above-and-ask-below-hybridizing-oo-and-functional-design.htm)
+       ## Inheretance?
+       ----
+       multy? mixins? traits?
       </script>
     </section>
 
+    <section data-markdown>
+      <script type="text/template">
+       ## State?
+       ----
+       complexity? concurency?
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## ((and essential acidental)
+       ##   complexity)
+       ---
+       ### Shared Mutable State
+       #### [Out of the tar pit](http://shaffner.us/cs/papers/tarpit.pdf)
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## State <> Identity
+       ----
+       complexity? concurency?
+      </script>
+    </section>
 
     <section data-markdown>
       <script type="text/template">
@@ -703,14 +817,6 @@ if( window.location.search.match( /print-pdf/gi ) ) {
        ![](rich.jpg)
 
        [infoq](http://www.infoq.com/author/Rich-Hickey)
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-       # be an engineer
-       ---
-       ### lern clojure
       </script>
     </section>
 
