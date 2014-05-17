@@ -93,15 +93,40 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
     <section data-markdown>
       <script type="text/template">
-      ## Why clojure
-
-      * homoiconic & meta programming
-      * functional programming
-      * concurency & persistent datastructures
-      * JVM & JSVM
-      * Rich Hickey
+      ## (why clojure)
+      ```clojure
+      (clojure :is  (lisp)
+         :for (fn [] programming)
+         :on  (JVM.)
+         :with (!> @concurency)
+         :by #maestro [Rich Hickey])
+      ```
       </script>
     </section>
+
+    <section data-markdown>
+      <script type="text/template">
+      ## (is (good? FP))
+      ```clojure
+      (first-class fn) => simplicity
+      (high-order fn) => abstraction
+      (pure fn) => reasonable
+      (lazy fn)
+      ```
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+      ## (is (good? LISP))
+      ```clojure
+      (homoiconicity) => uniformity
+      (macro) => extendability
+      (REPL) => interactivity
+      ```
+      </script>
+    </section>
+
 
     <section data-markdown>
       <script type="text/template">
@@ -395,9 +420,11 @@ if( window.location.search.match( /print-pdf/gi ) ) {
        ## (code is (a data))
 
        ```clojure
-       (transform my-code-base)
-       (analize my-code-base)
-       (as-meta-data my-code-base)
+       (-> my-code-base
+         (transform)
+         (analize)
+         (search)
+         (as-meta-data))
        ```
 
       </script>
