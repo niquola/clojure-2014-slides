@@ -1,2 +1,2 @@
-# [clojure](http://niquola.github.io/clojure-2014-slieds)
+# [clojure](http://niquola.github.io/clojure-2014-slides)
 
