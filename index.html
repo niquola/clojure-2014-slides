@@ -356,16 +356,15 @@ if( window.location.search.match( /print-pdf/gi ) ) {
 
     <section data-markdown>
       <script type="text/template">
-       ## (loco)
+       ## (core.logic)
 
        ```clojure
-        (def model
-          [($in :x 1 6)
-           ($in :y 3 7)
-           ($= ($+ :x :y) 10)])
-
-        (solutions model)
-        ;=> ({:y 7, :x 3} {:y 6, :x 4}...
+        (run* [q]
+          (fresh [x y]
+            (== [x 2] [1 y])
+            (== q [x y])))
+        
+        ;=> ([1 2])
        ```
       </script>
     </section>
