@@ -85,7 +85,140 @@ background: white !important;
       ![sprug](sprug.jpg)
       </script>
     </section>
+    
+    <section>
+        <h3> History (Mon, 13 Feb 2006 13:43:02 +0900)</h3>
+        <pre>
+          Ruby is a language designed in the following steps:
 
+          * take a simple lisp language (like one prior to CL).
+          * remove macros, s-expression.
+          * add simple object system (much simpler than CLOS).
+          * add blocks, inspired by higher order functions.
+          * add methods found in Smalltalk.
+          * add functionality found in Perl (in OO way).
+
+          So, Ruby was a Lisp originally, in theory.
+          Let's call it <b>MatzLisp</b> from now on. ;-)
+        </pre>
+    </section>
+
+
+ <section>
+        <h3> LISP, MacCarthy 1960</h3>
+        <pre>
+lisp is worth learning for the profound enlightenment experience you will have when you finally get it; that experience will make you a better programmer for the rest of your days, even if you never actually use Lisp itself a lot.
+        </pre>
+        </section>
+        
+
+    <section data-markdown>
+      <script type="text/template">
+      ## Why clojure
+
+      * lisp (homoiconic & meta programming)
+      * functional programming
+      * concurency & persistent datastructures
+      * JVM & JSVM
+      * Rich Hickey
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (lang?)
+       
+       * Primitives ?
+       * Composition ?
+       * Abstraction ?
+      </script>
+    </section>
+    
+     <section data-markdown>
+      <script type="text/template">
+       ### (primitives? :data)
+       ```clojure
+       nil
+       "string"
+       100.0 ;; number
+       :keyword
+       symbol
+       (this is the list)
+       [:this :is :the :vector]
+       {:i "am", :the "Map"}
+       #{\s \e \t}
+       ```
+      </script>
+    </section>
+    
+    <section data-markdown>
+      <script type="text/template">
+       ## All Data Types
+       ## are immutable
+
+       * list
+       * vector
+       * hash-map
+       * set
+       
+       [Chris Okasaki](http://www.amazon.com/Purely-Functional-Structures-Chris-Okasaki/dp/0521663504)
+      </script>
+    </section>
+
+    <section>
+      <h2>efficiently (tries)<h2>
+      <img src="persistent-dt.png" style="background: white;"/>
+    </section>
+
+   <section data-markdown>
+      <script type="text/template">
+       ### (primitives? :code)
+       ```clojure
+       (def symbol init?)
+       (if test then else?)
+       (do exprs*)
+       (let [bindings* ] exprs*)
+       (quote form)
+       (var symbol)
+       (fn name? [params* ] exprs*)
+       (loop [bindings* ] exprs*)
+       (recur exprs*)
+       (throw expr)
+       (try expr* catch-clause* finally-clause?)
+       ```
+      </script>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <section data-markdown>
       <script type="text/template">
       ## (what? clojure)
