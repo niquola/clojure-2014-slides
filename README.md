@@ -36,6 +36,8 @@ MacCarthy создавал его не, как исправление ошибо
 Цитируюя  Paul Grahame: есть две базовые модели для языков - модель C  и модель LIPS.
 Последнии 20 лет появляются языки, которые постепенно добавляют идеи из LISP к модели C.
 
+[Paul Grahame about LISP](http://www.paulgraham.com/lisp.html)
+
 
 [Eric Raymond](http://ru.wikipedia.org/wiki/%D0%A0%D1%8D%D0%B9%D0%BC%D0%BE%D0%BD%D0%B4,_%D0%AD%D1%80%D0%B8%D0%BA) в своем эссэ ["How to Become a Hacker"](http://www.catb.org/esr/faqs/hacker-howto.html) сказал:
 
@@ -46,6 +48,17 @@ MacCarthy создавал его не, как исправление ошибо
 
 
 # Clojure
+
+Это современный и практичный диалект LISP, расширенный персистентными (иммутабельными) структурами данных, 
+который может исполнятся на JVM, CLR и JS. 
+Clojure придумал и реализовал Rich Hickey, на мой взгляд, одна из самых светлых голов в сегоднешнем IT.
+
+
+# Rationale
+
+Clojure это Lisp для функционального программирования, 
+симбиотирующий со взрослой платформай и спроектированный
+для Concurency.
 
 
 
