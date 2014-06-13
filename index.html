@@ -201,46 +201,10 @@ lisp is worth learning for the profound enlightenment experience you will have w
       </script>
     </section>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-  
-
     <section data-markdown>
       <script type="text/template">
-      ## (why clojure)
-      * LISP is a good thing
-      * State and Identity
-      * Functional programming is a good thing
-      * Languages and Platforms
-      * Object Orientation is overrated
-      * Polymorphism is a good thing
-      * Concurrency and the multi-core future
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-      ## LISP is a good thing
-      ```clojure
-      (homoiconicity) => униформность
-      (macro) => расширяемость
-      (REPL) => интерактивность
-      ```
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
+       ## (composition? :code)
+       ---
        ## (homoiconicity)
        ----
        ## (CODE is DATA)
@@ -260,8 +224,8 @@ lisp is worth learning for the profound enlightenment experience you will have w
        ```
       </script>
     </section>
-
-    <section data-markdown>
+    
+        <section data-markdown>
       <script type="text/template">
        ### (homoiconic code is data)
        ```
@@ -302,64 +266,19 @@ lisp is worth learning for the profound enlightenment experience you will have w
        ```
       </script>
     </section>
-
-    <section data-markdown>
+    
+     <section data-markdown>
       <script type="text/template">
-       ### (data structures)
+      ## (s-expression)
        ```clojure
-       nil
-       "string"
-       100.0 ;; number
-       :keyword
-       symbol
-       (this is the list)
-       [:this :is :the :vector]
-       {:i "am", :the "Map"}
-       #{\s \e \t}
-       ```
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-       ## Read & Eval
-       ---
-       * read set of forms (like JSON)
-       * evaluate forms and return result (expression)
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-      ## (almost no syntax)
-       ```clojure
-       (form arg arg arg)
+       (op arg arg arg)
        (built-in-form)
        (function-call args list)
        (macros-call args and forms)
        ```
       </script>
     </section>
-
-    <section data-markdown>
-      <script type="text/template">
-       ### (built-ins)
-       ```clojure
-       (def symbol init?)
-       (if test then else?)
-       (do exprs*)
-       (let [bindings* ] exprs*)
-       (quote form)
-       (var symbol)
-       (fn name? [params* ] exprs*)
-       (loop [bindings* ] exprs*)
-       (recur exprs*)
-       (throw expr)
-       (try expr* catch-clause* finally-clause?)
-       ```
-      </script>
-    </section>
-
+   
     <section data-markdown>
       <script type="text/template">
        ### (most of good staf)
@@ -369,6 +288,15 @@ lisp is worth learning for the profound enlightenment experience you will have w
              (pred2) (expr2))
        (for [x xs] body)
        ```
+      </script>
+    </section>
+    
+    
+    <section data-markdown>
+      <script type="text/template">
+       ## (extendable small core)
+       ---
+       ## (DSL)
       </script>
     </section>
 
@@ -391,13 +319,71 @@ lisp is worth learning for the profound enlightenment experience you will have w
       </script>
     </section>
 
+
     <section data-markdown>
       <script type="text/template">
-       ## (ext lang)
-       ---
-       ## (DSL)
+       ## Expression problem
+
+       * add new type with fixed behavior
+       * add behavior to existing type
+
+       ![](ep.gif)
       </script>
     </section>
+
+
+    <section data-markdown>
+      <script type="text/template">
+       ## Polimorphism is a good thing
+       ```clojure
+       (into [1 2] [3 4])
+       ;=> [ 1 2 3 4]
+       (into {:a 1 :b 2} {:c 4})
+       ;=> {:a 1 :b 2 :c 3}
+       ```
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (protocols)
+
+       ```clojure
+       (defprotocol Speaker
+         (say [this]))
+
+       (deftype Rubist [name age city]
+         Speaker
+         (say [this]
+             (str "Hello i'm ruby")))
+
+       (deftype Javoid [name age city]
+         Speaker
+         (say [this]
+             (str "Hello i'm java")))
+       ```
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## Polimorphism
+       ```clojure
+       (defmulti encounter
+          (fn [x y]
+            [(:Species x) (:Species y)]))
+
+       (defmethod encounter
+         [:Bunny :Lion] [b l]
+         :run-away)
+
+       (defmethod encounter
+         [:Bunny :Bunny] [b l]
+         :sex)
+       ```
+      </script>
+    </section>
+
 
     <section data-markdown>
       <script type="text/template">
@@ -483,7 +469,17 @@ lisp is worth learning for the profound enlightenment experience you will have w
 	  (+ 2 (foo b)))
        ```
       </script>
+    </section> 
+    
+    <section data-markdown>
+      <script type="text/template">
+       ## Read & Eval
+       ---
+       * read set of forms (like JSON)
+       * evaluate forms and return result (expression)
+      </script>
     </section>
+
     <section data-markdown>
       <script type="text/template">
        ## Functional Programming is 
@@ -600,24 +596,6 @@ lisp is worth learning for the profound enlightenment experience you will have w
 
     <section data-markdown>
       <script type="text/template">
-       ## immutable & persistent
-
-       * list
-       * vector
-       * hash-map
-       * set
-       * ...
-      </script>
-    </section>
-
-
-    <section>
-      <h2>efficiently (tries)<h2>
-      <img src="persistent-dt.png" style="background: white;"/>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
        ## Languages and Platforms
 
        * JVM
@@ -639,69 +617,6 @@ lisp is worth learning for the profound enlightenment experience you will have w
       </script>
     </section>
 
-    <section data-markdown>
-      <script type="text/template">
-       ## Expression problem
-
-       * add new type with fixed behavior
-       * add behavior to existing type
-
-       ![](ep.gif)
-      </script>
-    </section>
-
-
-    <section data-markdown>
-      <script type="text/template">
-       ## Polimorphism is a good thing
-       ```clojure
-       (into [1 2] [3 4])
-       ;=> [ 1 2 3 4]
-       (into {:a 1 :b 2} {:c 4})
-       ;=> {:a 1 :b 2 :c 3}
-       ```
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-       ## (protocols)
-
-       ```clojure
-       (defprotocol Speaker
-         (say [this]))
-
-       (deftype Rubist [name age city]
-         Speaker
-         (say [this]
-             (str "Hello i'm ruby")))
-
-       (deftype Javoid [name age city]
-         Speaker
-         (say [this]
-             (str "Hello i'm java")))
-       ```
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-       ## Polimorphism
-       ```clojure
-       (defmulti encounter
-          (fn [x y]
-            [(:Species x) (:Species y)]))
-
-       (defmethod encounter
-         [:Bunny :Lion] [b l]
-         :run-away)
-
-       (defmethod encounter
-         [:Bunny :Bunny] [b l]
-         :sex)
-       ```
-      </script>
-    </section>
 
     <section data-markdown>
       <script type="text/template">
