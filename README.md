@@ -70,8 +70,8 @@ Clojure это Lisp для функционального программиро
 Это можно представить таблицей
 
 | Primitives    | Composition   | Abstracton  |
-| ------------- |:-------------:| -----:|
-| persistent ds    | dynamic lang | ADT & Protocols with Multhimethod |
+| ---------------------- |:-------------:| -----:|
+| persistent ds          | dynamic lang | ADT & Protocols with Multhimethod |
 | only ~ 10  built ins   | Fun. Comp. unified form      |   Functions & Macro |
 
 
