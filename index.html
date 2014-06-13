@@ -467,7 +467,7 @@ lisp is worth learning for the profound enlightenment experience you will have w
        ---
        ### Immutable datatypes & Pure Functions
        ---
-       ### Hight Order Functions
+       ### Higher Order Functions
       </script>
     </section>
 
@@ -503,14 +503,7 @@ lisp is worth learning for the profound enlightenment experience you will have w
       </script>
     </section>
 
-    <section data-markdown>
-      <script type="text/template">
-      ## (High Order Functions)
-      ----
-      ### abstaction
-      </script>
-    </section>
-
+  
 
     <section data-markdown>
       <script type="text/template">
@@ -614,9 +607,38 @@ lisp is worth learning for the profound enlightenment experience you will have w
       </script>
     </section>
 
+     <section data-markdown>
+      <script type="text/template">
+      ## (Higher Order Functions)
+      ----
+      ### (abstraction? :code)
+      </script>
+    </section>
+
+     <section data-markdown>
+      <script type="text/template">
+      ## (Higher Order Functions)
+      ----
+      ```clojure
+      (use 'clojure.walk)
+      (def thing 
+        {:page/tags [{:tag/category "lslsls"}]})
+      (postwalk 
+         #(if(keyword? %)
+            (keyword (name %)) %) thing)
+      => {:tags [{:category "lslsls"}]}
+
+      ```
+      ---
+      [Посетители деревьев Clojure](http://www.ibm.com/developerworks/ru/library/j-treevisit/)
+      </script>
+    </section>
 
     <section data-markdown>
       <script type="text/template">
+      
+       ## (abstraction? :code)
+       ---
        ## (meta lang)
        ---
        ### homoiconicity
