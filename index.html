@@ -85,7 +85,7 @@ background: white !important;
       ![sprug](sprug.jpg)
       </script>
     </section>
-    
+
     <section>
         <h3> History (Mon, 13 Feb 2006 13:43:02 +0900)</h3>
         <pre>
@@ -110,8 +110,8 @@ background: white !important;
 lisp is worth learning for the profound enlightenment experience you will have when you finally get it; that experience will make you a better programmer for the rest of your days, even if you never actually use Lisp itself a lot.
         </pre>
         </section>
-       
-    
+
+
       <section data-markdown>
       <script type="text/template">
       ## (what? clojure)
@@ -128,13 +128,13 @@ lisp is worth learning for the profound enlightenment experience you will have w
     <section data-markdown>
       <script type="text/template">
        ## (lang?)
-       
+
        * Primitives ?
        * Composition ?
        * Abstraction ?
       </script>
     </section>
-    
+
      <section data-markdown>
       <script type="text/template">
        ### (primitives? :data)
@@ -151,7 +151,7 @@ lisp is worth learning for the profound enlightenment experience you will have w
        ```
       </script>
     </section>
-    
+
     <section data-markdown>
       <script type="text/template">
        ## All Data Types
@@ -161,7 +161,7 @@ lisp is worth learning for the profound enlightenment experience you will have w
        * vector
        * hash-map
        * set
-       
+
        [Chris Okasaki](http://www.amazon.com/Purely-Functional-Structures-Chris-Okasaki/dp/0521663504)
       </script>
     </section>
@@ -189,45 +189,51 @@ lisp is worth learning for the profound enlightenment experience you will have w
        ```
       </script>
     </section>
-    
-    
+
+
     <section data-markdown>
       <script type="text/template">
        ### (composition? :data)
+
        ```clojure
        [{:name "admin" :roles #{:admin}}
-       	{:name "user"  :roles #{:author}}]
+        {:name "user"  :roles #{:author}}]
        ```
-      </script>
-    </section>
-    
-    <section data-markdown>
-      <script type="text/template">
-       ## (composition? :code)
-       ---
-       ## (homoiconicity)
-       ----
-       ## (CODE is DATA)
       </script>
     </section>
 
     <section data-markdown>
       <script type="text/template">
-       ### (homoiconic)
-       ```
-       ["function", "myfn", ["x", "y"],
-         ["+",
-           ["*", "x", "x"],
-           ["*", "y", "y"]]]
+      ## (composition? :code)
 
-       ["myfn", 3, 6]
+      ```
+      a + b*3
+      ```
+
+      ![ast.png](ast.png)
+      </script>
+    </section>
+
+
+
+    <section data-markdown>
+      <script type="text/template">
+       ### (ast)
+
+       ```ruby
+       [:function, :myfn, [:x, :y],
+         [:+,
+           [:*, :x, :x],
+           [:*, :y, :y]]]
+
+       [:myfn, 3, 6]
        ```
       </script>
     </section>
-    
+
         <section data-markdown>
       <script type="text/template">
-       ### (homoiconic code is data)
+       ### (ast)
        ```
        [function myfn [x y]
          [+
@@ -241,21 +247,21 @@ lisp is worth learning for the profound enlightenment experience you will have w
 
     <section data-markdown>
       <script type="text/template">
-       ### (same in clojure)
+       ### (hello lisp)
+
        ```clojure
-       (defn myfn (x y) ;; 3
-         (+ (* x x) (* y y))) ;; 7
+       (defn myfn [x y]
+         (+ (* x x)
+            (* y y)))
 
-       (myfn 3 6) ; 2
-
-       ;; sum: 12
+       (myfn 3 6)
        ```
       </script>
     </section>
 
     <section data-markdown>
       <script type="text/template">
-       ### {[;not(so-much());]}
+       ### {[;not(so-much(punctuation));]}
        ```
        function myfn(x,y){ //4
          return x*x + y*y; //2
@@ -266,8 +272,39 @@ lisp is worth learning for the profound enlightenment experience you will have w
        ```
       </script>
     </section>
-    
-     <section data-markdown>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (homoiconicity)
+       ----
+       ## (CODE is DATA)
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+      ## (uniform)
+
+      ```clojure
+      (class module method statements ...)
+      (only s-expression! )
+      ```
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+      ## (syntax)
+
+      ```clojure
+      form = (op arg arg)
+      arg = form | data
+      ```
+      </script>
+    </section>
+
+
+    <section data-markdown>
       <script type="text/template">
       ## (s-expression)
        ```clojure
@@ -278,7 +315,7 @@ lisp is worth learning for the profound enlightenment experience you will have w
        ```
       </script>
     </section>
-   
+
     <section data-markdown>
       <script type="text/template">
        ### (most of good staf)
@@ -290,8 +327,8 @@ lisp is worth learning for the profound enlightenment experience you will have w
        ```
       </script>
     </section>
-    
-    
+
+
     <section data-markdown>
       <script type="text/template">
        ## (extendable small core)
@@ -318,45 +355,61 @@ lisp is worth learning for the profound enlightenment experience you will have w
        ```
       </script>
     </section>
-    
+
     <section data-markdown>
       <script type="text/template">
-       ## (abstraction? :data) => ADT
+       ## (abstraction? :data)
+       ### ADT - abstract data type
        ---
        ```clojure
-       (def tp (mk-rat 2 3))
-       (denom tp)
-       (numer tp)
-       (+rat tp tp)
-       (*rat tp tp)
+       (constructor ...) => tp
+       (selector tp) => ...
+       (operations tp) => ...
+       ```
+       ### separate data & behavior
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (Polimorphism?)
+
+       ```
+         collection = array
+         collection = set
+
+         collection.add(element)
        ```
       </script>
     </section>
 
-
     <section data-markdown>
       <script type="text/template">
-       ## (abstraction-by polimorphism)
-       ```clojure
-       (into [1 2] [3 4])
-       (into {:a 1 :b 2} {:c 4})
-       ```
+       ## (oopish polimorphism)
+       ----
+       ![meshok.jpg](meshok.jpg)
+       ----
+       ### methods bundled with data
       </script>
     </section>
-    
-    
+
     <section data-markdown>
       <script type="text/template">
-       ## Expression problem
+      ## Expression problem
+      ---
 
-       * add new type with fixed behavior
-       * add behavior to existing type
-       
-| type        | op1           | op2  |
-| ------------- |:-------------:| -----:|
-| tp1    |  |  |
-| tp2   |       |    |
-| tp3 |     |     |
+      ```
+      | type   | op1  | op2  | ? |
+      | ------ |:----:| ----:|   |
+      | tp1    | x    | x    |   |
+      | tp2    | x    | x    |   |
+      | tp3    | x    | x    |   |
+      -> ?
+      ```
+      ---
+
+      ### add new type
+      ### add new behavior (interface)
       </script>
     </section>
 
@@ -383,7 +436,7 @@ lisp is worth learning for the profound enlightenment experience you will have w
 
     <section data-markdown>
       <script type="text/template">
-       ## Polimorphism
+       ## (dynamic dispatch)
        ```clojure
        (defmulti encounter
           (fn [x y]
@@ -400,26 +453,64 @@ lisp is worth learning for the profound enlightenment experience you will have w
       </script>
     </section>
 
-
-
     <section data-markdown>
       <script type="text/template">
-       ## Functional Programming is 
+       ## (abstraction? :code)
        ---
-       ### a good thing
+       ## Functional Programming
       </script>
     </section>
 
     <section data-markdown>
       <script type="text/template">
-       ### First class functions
-       ### Immutable datatypes
-       ### Pure Functions
+       ## First class functions
+       ---
+       ### Immutable datatypes & Pure Functions
        ---
        ### Hight Order Functions
-
       </script>
     </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## Lambda Calculus
+       ---
+       ### abstraction and application
+       ---
+       [An Introduction to Functional Programming Through Lambda Calculus](http://www.amazon.com/Introduction-Functional-Programming-Calculus-Mathematics/dp/0486478831)
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+      ## Functional Programming
+      ----
+
+      #### a more mathematical view
+
+      ----
+      #### functions get values and produce values
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+      ## (Pure Functions & Immutable Data)
+      ----
+      ### referential transparency
+      ----
+      ### functional core
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+      ## (High Order Functions)
+      ----
+      ### abstaction
+      </script>
+    </section>
+
 
     <section data-markdown>
       <script type="text/template">
@@ -439,12 +530,12 @@ lisp is worth learning for the profound enlightenment experience you will have w
       </script>
     </section>
 
-    
+
     <section data-markdown>
       <script type="text/template">
       ## Identity & Working Models
       -----------
-      Models need identity for the same reasons humans need identity 
+      Models need identity for the same reasons humans need identity
       - to represent the world.
       </script>
     </section>
@@ -461,8 +552,8 @@ lisp is worth learning for the profound enlightenment experience you will have w
       <script type="text/template">
       ## State & Identity
       ------
-       * No way to obtain the state independent of the identity other than copying it. 
-       * No way to observe a stable state (even to copy it) without blocking others from changing it. 
+       * No way to obtain the state independent of the identity other than copying it.
+       * No way to observe a stable state (even to copy it) without blocking others from changing it.
        * No way to associate the identity's state with a different value other than in-place memory mutation.
       </script>
     </section>
@@ -493,18 +584,9 @@ lisp is worth learning for the profound enlightenment experience you will have w
 
     <section data-markdown>
       <script type="text/template">
-      ## Functional Programming
-      ----
-      a more mathematical view 
-      ----
-      functions get values and produce values
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
       ## Clojure Programming
       ----
+
       Calculate values functionaly
 
       -----
@@ -512,27 +594,45 @@ lisp is worth learning for the profound enlightenment experience you will have w
       Use Refs & Agents for identity
 
       ------
-
       [clojure docs](http://clojure.org/state)
       </script>
     </section>
-    
-    
+
+    <section data-markdown>
+      <script type="text/template">
+       ## Concurency
+
+       Immutability makes much of the problem go away
+
+       ---
+
+       Software Transactional Memory & agent systems
+
+       ---
+       do the hard part
+
+      </script>
+    </section>
+
+
     <section data-markdown>
       <script type="text/template">
        ## (meta lang)
        ---
        ### homoiconicity
-       
+       ### uniform syntax
+       ### macros
+
       </script>
     </section>
-    
+
     <section data-markdown>
       <script type="text/template">
        ## (midje)
        ```clojure
-       (+ 1 2) => 3
-       (conj [1] 2) => (contains 1 2)
+       (fact "here desc"
+         (+ 1 2) => 3
+         (conj [1] 2) => (contains 1 2))
        ```
       </script>
     </section>
@@ -594,7 +694,7 @@ lisp is worth learning for the profound enlightenment experience you will have w
           (fresh [x y]
             (== [x 2] [1 y])
             (== q [x y])))
-        
+
         ;=> ([1 2])
        ```
       </script>
@@ -605,15 +705,30 @@ lisp is worth learning for the profound enlightenment experience you will have w
        ## (paradigm :as (a library))
 
        ```clojure
-       (require '[clojure.core.typed :refer [ann]])
-       (ann bar [Number -> Number])
+       (require
+          '[clojure.core.typed :refer [ann]])
+
+       (ann  bar [Number -> Number])
        (defn bar [b]
 	  (+ 2 (foo b)))
        ```
       </script>
-    </section> 
-   
-    
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (repl driven dev)
+
+       ```clojure
+        nREPL server started on port 49222
+        on host 127.0.0.1
+
+        user=> ...
+       ```
+
+       ### (dynamism & fp)
+      </script>
+    </section>
 
     <section data-markdown>
       <script type="text/template">
@@ -628,29 +743,25 @@ lisp is worth learning for the profound enlightenment experience you will have w
     <section data-markdown>
       <script type="text/template">
        ## interop
-       ```clojure 
+       ```clojure
        (.toUpperCase "fred")
        (System/getProperty "java.vm.version")
-       (.. System 
-           (getProperties) 
+       (.. System
+           (getProperties)
            (get "os.name"))
        ```
       </script>
     </section>
 
 
-    <section data-markdown>
-      <script type="text/template">
-       ## Concurency
 
-       ---
-       Clojure's software transactional memory and agent systems do the hard part
 
-       ---
-       Immutability makes much of the problem go away
-      </script>
+
+    <section>
+      <h3><a href="http://www.infoq.com/author/Rich-Hickey">Rich Hickey</a><h3>
+      <br/>
+      <iframe width="560" height="315" src="//www.youtube.com/embed/-6BsiVyC1kM" frameborder="0" allowfullscreen></iframe>
     </section>
-
 
     <section data-markdown>
       <script type="text/template">
