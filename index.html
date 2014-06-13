@@ -318,16 +318,18 @@ lisp is worth learning for the profound enlightenment experience you will have w
        ```
       </script>
     </section>
-
-
+    
     <section data-markdown>
       <script type="text/template">
-       ## Expression problem
-
-       * add new type with fixed behavior
-       * add behavior to existing type
-
-       ![](ep.gif)
+       ## (abstraction? :data) => ADT
+       ---
+       ```clojure
+       (def tp (mk-rat 2 3))
+       (denom tp)
+       (numer tp)
+       (+rat tp tp)
+       (*rat tp tp)
+       ```
       </script>
     </section>
 
@@ -341,6 +343,24 @@ lisp is worth learning for the profound enlightenment experience you will have w
        (into {:a 1 :b 2} {:c 4})
        ;=> {:a 1 :b 2 :c 3}
        ```
+      </script>
+    </section>
+    
+    
+    <section data-markdown>
+      <script type="text/template">
+       ## Expression problem
+
+       * add new type with fixed behavior
+       * add behavior to existing type
+
+       ![](ep.gif)
+       
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
       </script>
     </section>
 
