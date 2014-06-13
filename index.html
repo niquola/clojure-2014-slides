@@ -336,12 +336,10 @@ lisp is worth learning for the profound enlightenment experience you will have w
 
     <section data-markdown>
       <script type="text/template">
-       ## Polimorphism is a good thing
+       ## (abstraction-by polimorphism)
        ```clojure
        (into [1 2] [3 4])
-       ;=> [ 1 2 3 4]
        (into {:a 1 :b 2} {:c 4})
-       ;=> {:a 1 :b 2 :c 3}
        ```
       </script>
     </section>
@@ -353,14 +351,12 @@ lisp is worth learning for the profound enlightenment experience you will have w
 
        * add new type with fixed behavior
        * add behavior to existing type
-
-       ![](ep.gif)
        
-| Tables        | Are           | Cool  |
+| type        | op1           | op2  |
 | ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| tp1    |  |  |
+| tp2   |       |    |
+| tp3 |     |     |
       </script>
     </section>
 
@@ -405,100 +401,6 @@ lisp is worth learning for the profound enlightenment experience you will have w
     </section>
 
 
-    <section data-markdown>
-      <script type="text/template">
-       ## (midje)
-       ```clojure
-       (+ 1 2) => 3
-       (conj [1] 2) => (contains 1 2)
-       ```
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-       ## (core.async)
-       ```clojure
-        (def ch (chan))
-        (go
-         (while true
-           (let [v (<! ch)]
-            (println "Read: " v))))
-
-        (go (>! ch "hi")
-            (<! (timeout 5000))
-            (>! ch "there"))
-       ```
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-       ## (korma)
-
-       ```clojure
-        (defentity users)
-        (select users
-          (where {:active true})
-          (order :created)
-          (limit 5)
-          (offset 3))
-       ```
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-       ## (loco)
-
-       ```clojure
-        (def model
-          [($in :x 1 6)
-           ($in :y 3 7)
-           ($= ($+ :x :y) 10)])
-
-        (solutions model)
-        ;=> ({:y 7, :x 3} {:y 6, :x 4}...
-       ```
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-       ## (core.logic)
-
-       ```clojure
-        (run* [q]
-          (fresh [x y]
-            (== [x 2] [1 y])
-            (== q [x y])))
-        
-        ;=> ([1 2])
-       ```
-      </script>
-    </section>
-
-    <section data-markdown>
-      <script type="text/template">
-       ## (paradigm :as (a library))
-
-       ```clojure
-       (require '[clojure.core.typed :refer [ann]])
-       (ann bar [Number -> Number])
-       (defn bar [b]
-	  (+ 2 (foo b)))
-       ```
-      </script>
-    </section> 
-    
-    <section data-markdown>
-      <script type="text/template">
-       ## Read & Eval
-       ---
-       * read set of forms (like JSON)
-       * evaluate forms and return result (expression)
-      </script>
-    </section>
 
     <section data-markdown>
       <script type="text/template">
@@ -512,9 +414,10 @@ lisp is worth learning for the profound enlightenment experience you will have w
       <script type="text/template">
        ### First class functions
        ### Immutable datatypes
+       ### Pure Functions
        ---
        ### Hight Order Functions
-       ### Pure Functions
+
       </script>
     </section>
 
@@ -613,6 +516,104 @@ lisp is worth learning for the profound enlightenment experience you will have w
       [clojure docs](http://clojure.org/state)
       </script>
     </section>
+    
+    
+    <section data-markdown>
+      <script type="text/template">
+       ## (meta lang)
+       ---
+       ### homoiconicity
+       
+      </script>
+    </section>
+    
+    <section data-markdown>
+      <script type="text/template">
+       ## (midje)
+       ```clojure
+       (+ 1 2) => 3
+       (conj [1] 2) => (contains 1 2)
+       ```
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (core.async)
+       ```clojure
+        (def ch (chan))
+        (go
+         (while true
+           (let [v (<! ch)]
+            (println "Read: " v))))
+
+        (go (>! ch "hi")
+            (<! (timeout 5000))
+            (>! ch "there"))
+       ```
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (korma)
+
+       ```clojure
+        (defentity users)
+        (select users
+          (where {:active true})
+          (order :created)
+          (limit 5)
+          (offset 3))
+       ```
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (loco)
+
+       ```clojure
+        (def model
+          [($in :x 1 6)
+           ($in :y 3 7)
+           ($= ($+ :x :y) 10)])
+
+        (solutions model)
+        ;=> ({:y 7, :x 3} {:y 6, :x 4}...
+       ```
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (core.logic)
+
+       ```clojure
+        (run* [q]
+          (fresh [x y]
+            (== [x 2] [1 y])
+            (== q [x y])))
+        
+        ;=> ([1 2])
+       ```
+      </script>
+    </section>
+
+    <section data-markdown>
+      <script type="text/template">
+       ## (paradigm :as (a library))
+
+       ```clojure
+       (require '[clojure.core.typed :refer [ann]])
+       (ann bar [Number -> Number])
+       (defn bar [b]
+	  (+ 2 (foo b)))
+       ```
+      </script>
+    </section> 
+   
+    
 
     <section data-markdown>
       <script type="text/template">
