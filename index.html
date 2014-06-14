@@ -168,17 +168,19 @@ Eric Raymond
        ## All Data Types
        ## are immutable
 
-       * list
-       * vector
-       * hash-map
-       * set
-
+       * list ()
+       * vector []
+       * hash-map {}
+       * set #{}
+       
+       ----
+       
        [Chris Okasaki](http://www.amazon.com/Purely-Functional-Structures-Chris-Okasaki/dp/0521663504)
       </script>
     </section>
 
     <section>
-      <h2>efficiently (tries)<h2>
+      <h2>Persistent (tries)<h2>
       <img src="persistent-dt.png" style="background: white;"/>
     </section>
 
@@ -317,9 +319,8 @@ Eric Raymond
 
     <section data-markdown>
       <script type="text/template">
-      ## (s-expression)
+      ## (everething s-expression)
        ```clojure
-       (op arg arg arg)
        (built-in-form)
        (function-call args list)
        (macros-call args and forms)
@@ -343,6 +344,8 @@ Eric Raymond
     <section data-markdown>
       <script type="text/template">
        ## (extendable small core)
+       ---
+       ## (meta language)
        ---
        ## (DSL)
       </script>
